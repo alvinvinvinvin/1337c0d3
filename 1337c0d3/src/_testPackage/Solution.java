@@ -18,4 +18,11 @@ public class Solution {
 		List<List<Integer>> res = new LinkedList<List<Integer>>();
 		res.add(Arrays.asList(1,2,3));
 	}
+	static void test3(List<List<Integer>> res){
+		for (List<Integer> i : res) {
+			for (Integer j : i) {
+				System.out.println(j);
+			}
+		}
+	}
 }
