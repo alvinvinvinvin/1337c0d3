@@ -18,6 +18,7 @@ public class Solution {
 	static void test2(){
 		List<List<Integer>> res = new LinkedList<List<Integer>>();
 		res.add(Arrays.asList(1,2,3));
+		test3(res);
 	}
 	static void test3(List<List<Integer>> res){
 		for (List<Integer> i : res) {
