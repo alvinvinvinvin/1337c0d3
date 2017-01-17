@@ -1,7 +1,7 @@
 package _testPackage;
 import java.util.*;
 import java.math.*;
-import dataStructureHelper.*;
+//import dataStructureHelper.*;
 
 public class Solution {
 	public static void main(String... args){
@@ -17,7 +17,7 @@ public class Solution {
 	
 	static void test2(){
 		List<List<Integer>> res = new LinkedList<List<Integer>>();
-		res.add(Arrays.asList(1,2,3));
+		res.add(Arrays.asList(1,2,3,4));
 		test3(res);
 	}
 	static void test3(List<List<Integer>> res){
