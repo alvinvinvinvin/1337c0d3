@@ -7,6 +7,7 @@ public class Solution {
 	public static void main(String... args){
 		System.out.println("H,W!");
 		test1();
+		test2();
 	}
 	
 	static void test1(){
