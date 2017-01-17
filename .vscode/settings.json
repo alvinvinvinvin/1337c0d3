@@ -1,4 +1,5 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "java.home": "C:\\JDK\\jdk1.8.0_112"
+    "java.home": "C:\\JDK\\jdk1.8.0_112",
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
