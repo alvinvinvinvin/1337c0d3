@@ -9,7 +9,7 @@ import java.util.*;
 class Solution {
 
     public static void main(String args[]) {
-    	System.out.println(1>-Integer.MIN_VALUE);
+    	System.out.println('a'-'z');
     	System.out.println("git test");
     }
     
