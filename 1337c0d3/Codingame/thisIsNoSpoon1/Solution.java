@@ -117,33 +117,53 @@ import java.util.Scanner;
  **/
 public class Solution {
 
-    public static void main(String args[]) {
+	public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
         int width = in.nextInt(); // the number of cells on the X axis
         int height = in.nextInt(); // the number of cells on the Y axis
         in.nextLine();
-        String[] row = new String[height];
-        for (int i = 0; i < height; i++) {
-            String line = in.nextLine(); // width characters, each either 0 or .
-            row[i] = line;
+        char[][] table = new char[height][width];
+        for (int y = 0; y < height; y++) {
+            char[] line = in.nextLine().toCharArray(); // width characters, each either 0 or .
+            table[y] = line;
         }
         in.close();
-        int x = 0,y=0;
-        for(int i = 0; i+1<width;i++){
-        	for(int j = 0; j+1<height; j++){
-        		if(row[j].charAt(i+1) != '.' && row[j+1].charAt(i) != '.'){
-        			x=i;
-        			y=j;
+        for(int y = 0; y<height; y++){
+        	for(int x = 0; x<width;x++){
+        		if(table[y][x] == '0'){
+        			getNeighbours(y,x,height,width,table);
         		}
         	}
         }
 
-        // Write an action using System.out.println()
-        // To debug: System.err.println("Debug messages...");
-
-        String res = x+" "+y+" "+(x+1)+" "+y+" "+x+" "+(y+1);
-        // Three coordinates: a node, its right neighbor, its bottom neighbor
-        System.out.println(res);
-
     }
+	
+	static void getNeighbours(int y, int x, int height, int width, char[][] table){
+		int x0 = x;
+		int y0 = y;
+		int x1 = -1;
+		int y1 = -1;
+		int x2 = -1;
+		int y2 = -1;
+		
+		//find right
+		for(int i = x+1; i<width; i++){
+			if(table[y][i] == '0'){
+				x1 = i;
+				y1 = y;
+				break;
+			}
+		}
+		
+		//find down
+		for(int i = y+1; i<height; i++){
+			if(table[i][x] == '0'){
+				x2 = x;
+				y2 = i;
+				break;
+			}
+		}
+		
+		System.out.println(x0+" "+y0+" "+x1+" "+y1+" "+x2+" "+y2);
+	}
 }
