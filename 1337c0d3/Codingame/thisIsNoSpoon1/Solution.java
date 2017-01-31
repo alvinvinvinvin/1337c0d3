@@ -115,7 +115,7 @@ import java.util.Scanner;
 /**
  * Don't let the machines win. You are humanity's last hope...
  **/
-class Player {
+public class Solution {
 
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
