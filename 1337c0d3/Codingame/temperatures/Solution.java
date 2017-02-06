@@ -49,14 +49,24 @@ class Solution {
             int temp = Integer.parseInt(temp_set[i]);
             
             if(temp >0){
+            	//To check if it is the first greater than 0 temperature
                 if(f_g0){
+                	/*
+                	 *  If it is, assign the min_g0 to the first 
+                	 *	greater than 0 temperature
+                	 */
                     min_g0 = temp;
                     f_g0 = false;
                     continue;
                 }
                 min_g0 = Math.min(min_g0, temp);
             }else if(temp<0){
+            	//To check if it is the first less than 0 temperature
                 if(f_l0){
+                	/*
+                	 *  If it is, assign the max_l0 to the first 
+                	 *	less than 0 temperature
+                	 */
                     max_l0 = temp;
                     f_l0 = false;
                     continue;
