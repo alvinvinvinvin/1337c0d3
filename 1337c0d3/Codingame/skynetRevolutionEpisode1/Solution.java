@@ -184,6 +184,7 @@ public class Solution {
 				}
 			}
 		}
+		if(!stack_gate.isEmpty())
 		System.out.println(stack_gate.pop()+" "+stack_gate.pop());
 				
 	}
