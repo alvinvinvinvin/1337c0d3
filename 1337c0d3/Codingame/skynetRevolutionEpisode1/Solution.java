@@ -140,11 +140,22 @@ public class Solution {
             int EI = in.nextInt(); // the index of a gateway node
             set_ei.add(EI);
         }
-
+        Stack<Integer> stack_gate = new Stack<Integer>();
+        for(int i = 0; i<L*2; i++){
+        	if(set_ei.contains(arr_ns[i])){
+        		if(i < L){
+        			stack_gate.push(arr_ns[i]);
+        			stack_gate.push(arr_ns[i+L]);
+        		}else{
+        			stack_gate.push(arr_ns[i]);
+        			stack_gate.push(arr_ns[i-L]);
+        		}
+        	}
+        }
         // game loop
         while (true) {
             int SI = in.nextInt(); // The index of the node on which the Skynet agent is positioned this turn
-            find(SI, arr_ns, set_ei, L);
+            find(SI, arr_ns, set_ei, L, stack_gate);
             // Write an action using System.out.println()
             // To debug: System.err.println("Debug messages...");
 
@@ -153,25 +164,28 @@ public class Solution {
         }
     }
 	
-	static void find(int SI, int[] arr_ns, Set<Integer> set_ei, int L){
+	static void find(int SI, int[] arr_ns, Set<Integer> set_ei, int L, Stack<Integer> stack_gate){
 		for(int i = 0; i<L*2;i++){
 			if(arr_ns[i] == SI){
 				if(i<L){
 					if(set_ei.contains(arr_ns[i+L])){
 						System.out.println(SI+" "+arr_ns[i+L]);
+						return;
 					}else{
-						find(arr_ns[i+L], arr_ns, set_ei, L);
+						continue;
 					}	
 				}else{
 					if(set_ei.contains(arr_ns[i-L])){
 						System.out.println(arr_ns[i-L]+" "+SI);
+						return;
 					}else{
-						find(arr_ns[i-L], arr_ns, set_ei, L);
+						continue;
 					}
 				}
 			}
 		}
-		
+		System.out.println(stack_gate.pop()+" "+stack_gate.pop());
+				
 	}
 
 }
