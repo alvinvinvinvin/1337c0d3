@@ -78,49 +78,68 @@ public class Solution {
 	 * @param args
 	 */
 	 public static void main(String args[]) {
-		Scanner in = new Scanner(System.in);
-		int W = in.nextInt(); // width of the building.
-		int H = in.nextInt(); // height of the building.
-		int N = in.nextInt(); // maximum number of turns before game over.
-		int X0 = in.nextInt();
-		int Y0 = in.nextInt();
-		int X_max = W-1;
-		int Y_max = H-1;
-		int X_min = 0;
-		int Y_min = 0;
-		// game loop
-		while (true) {
-		    String bombDir = in.next(); // the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
-		
-			// Write an action using System.out.println()
-			// To debug: System.err.println("Debug messages...");
-			
-			// have to detect round trip
-			
-			// the location of the next window Batman should jump to.
-			if(bombDir.indexOf("U")>-1){
-				Y0 = (Y_min+Y0)%2 == 0?(Y_min+Y0)/2 : (Y_min+Y0)/2+1;
-				Y_max = Y0;
-			}
-			if(bombDir.indexOf("D")>-1){
-			    Y0 = (Y_max+Y0)%2 == 0?(Y_max+Y0)/2 : (Y_max+Y0)/2+1;
-				Y_min = Y0;
+		 Scanner in = new Scanner(System.in);
+			int W = in.nextInt(); // width of the building.
+			int H = in.nextInt(); // height of the building.
+			int N = in.nextInt(); // maximum number of turns before game over.
+			int X0 = in.nextInt();
+			int Y0 = in.nextInt();
+			int X_max = W-1;
+			int Y_max = H-1;
+			int X_min = 0;
+			int Y_min = 0;
+	 		
+	 		int X_post = X0;
+	 		int Y_post = Y0;
+	         
+	        while (true) {
+		        String bombDir = in.next();// the direction of the bombs from batman's current location (U, UR, R, DR, D, DL, L or UL)
+		        
+		        // Write an action using System.out.println()
+		        // To debug: System.err.println("Debug messages...");
+		        
+		        // have to detect round trip
+		        
+		        // the location of the next window Batman should jump to.
+		        if(bombDir.indexOf("U")>-1){
+		            int diff = Y_post-Y_min;
+	                Y0 = (Y_min+Y_post)/2;
+	                if(diff == 1 && Y0 !=0)
+	                Y0 -= diff;
+				    Y_max = Y_post>Y0?Y_post:Y0;
+	    			Y_post = Y0;
+				}
+				if(bombDir.indexOf("D")>-1){
+				    int diff = Y_max-Y_post;
+	                Y0 = (Y_max+Y_post)/2;
+	                if(diff == 1 && Y0 != H-1)
+	                Y0 += diff;
+	                Y_min = Y_post<Y0?Y_post:Y0;
+				    Y_post = Y0;
+				}
+				if(bombDir.indexOf("R")>-1){
+				    int diff = X_max-X_post;
+	                X0 = (X_max+X_post)/2;
+	                if(diff == 1 && X0 != W-1)
+	                X0 += diff;
+			        X_min = X_post<X0?X_post:X0;
+				    X_post = X0;
+				}
+				if(bombDir.indexOf("L")>-1){
+				    int diff = X_post-X_min;
+	                X0 = (X_min+X_post)/2;
+	                if(diff == 1 && X0 != 0)
+	                X0 -= diff;
+			        X_max = X_post>X0?X_post:X0;
+					X_post = X0;
+				}
 				
-			}
-			if(bombDir.indexOf("R")>-1){
-			    X0 = (X_max+X0)%2 == 0?(X_max+X0)/2 : (X_max+X0)/2+1;
-				X_min = X0;
-			
-			}
-			if(bombDir.indexOf("L")>-1){
-			    X0 = (X_min+X0)%2 == 0?(X_min+X0)/2 : (X_min+X0)/2+1;
-				X_max = X0;
-			}
-			
-			System.err.println("X_min: "+X_min+" Y_min: "+Y_min+" X_max: "+X_max+" Y_max: "+Y_max);
-			
-			System.out.println(X0+" "+Y0);
-		}
+				System.err.println("X_min: "+X_min+" Y_min: "+Y_min+" X_max: "+
+				X_max+" Y_max: "+Y_max+" X_post: "+X_post+" Y_post: "+Y_post);
+				
+				System.out.println(X0+" "+Y0);
+	           
+	        }
 	 }
 	 
 
