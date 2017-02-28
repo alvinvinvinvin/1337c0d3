@@ -103,7 +103,7 @@ public class Solution {
 		        // the location of the next window Batman should jump to.
 		        if(bombDir.indexOf("U")>-1){
 		            int diff = Y_post-Y_min;
-	                Y0 = (Y_min+Y_post)/2;
+	                Y0 = (diff)/2+Y_min;
 	                if(diff == 1 && Y0 !=0)
 	                Y0 -= diff;
 				    Y_max = Y_post>Y0?Y_post:Y0;
@@ -111,7 +111,7 @@ public class Solution {
 				}
 				if(bombDir.indexOf("D")>-1){
 				    int diff = Y_max-Y_post;
-	                Y0 = (Y_max+Y_post)/2;
+	                Y0 = (diff)/2+Y_post;
 	                if(diff == 1 && Y0 != H-1)
 	                Y0 += diff;
 	                Y_min = Y_post<Y0?Y_post:Y0;
@@ -119,7 +119,7 @@ public class Solution {
 				}
 				if(bombDir.indexOf("R")>-1){
 				    int diff = X_max-X_post;
-	                X0 = (X_max+X_post)/2;
+	                X0 = (diff)/2+X_post;
 	                if(diff == 1 && X0 != W-1)
 	                X0 += diff;
 			        X_min = X_post<X0?X_post:X0;
@@ -127,7 +127,7 @@ public class Solution {
 				}
 				if(bombDir.indexOf("L")>-1){
 				    int diff = X_post-X_min;
-	                X0 = (X_min+X_post)/2;
+	                X0 = (diff)/2+X_min;
 	                if(diff == 1 && X0 != 0)
 	                X0 -= diff;
 			        X_max = X_post>X0?X_post:X0;
