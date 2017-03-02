@@ -58,19 +58,22 @@ final score but are slightly different.
 The program must first read the initialization data from standard input. 
 Then, within an infinite loop, read the contextual data (location of leading 
 clone) from the standard input and provide the next instruction to standard output.
+
 Initialization input
+
 Line 1: 8 integers:
 nbFloors : number of floors in the area. A clone can move between floor 0 
-and floor nbFloors - 1
+and floor nbFloors - 1.
+
 width : the width of the area. The clone can move without being destroyed 
-between position 0 and position width - 1
-nbRounds : maximum number of rounds before the end of the game
-exitFloor : the floor on which the exit is located
-exitPos : the position of the exit on its floor
+between position 0 and position width - 1.
+nbRounds : maximum number of rounds before the end of the game.
+exitFloor : the floor on which the exit is located.
+exitPos : the position of the exit on its floor.
 nbTotalClones : the number of clones that will come out of the generator 
-during the game
-nbAdditionalElevators : not used for this first question, value is always 0
-nbElevators : number of elevators in the area
+during the game.
+nbAdditionalElevators : not used for this first question, value is always 0.
+nbElevators : number of elevators in the area.
 nbElevators next lines: 2 integers elevatorFloor elevatorPos providing the 
 floor and position of an elevator.
 Input for one game turn
@@ -100,7 +103,7 @@ Duration of one game turn: 100 ms
  */
 package dontPanicEpisode1;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author han.chen
@@ -121,9 +124,11 @@ public class Solution {
         int nbTotalClones = in.nextInt(); // number of generated clones
         int nbAdditionalElevators = in.nextInt(); // ignore (always zero)
         int nbElevators = in.nextInt(); // number of elevators
+        Map<Integer, Integer> map_nbElevators = new HashMap<Integer, Integer>();
         for (int i = 0; i < nbElevators; i++) {
             int elevatorFloor = in.nextInt(); // floor on which this elevator is found
             int elevatorPos = in.nextInt(); // position of the elevator on its floor
+            map_nbElevators.put(elevatorFloor, elevatorPos);
         }
 
         // game loop
@@ -131,13 +136,32 @@ public class Solution {
             int cloneFloor = in.nextInt(); // floor of the leading clone
             int clonePos = in.nextInt(); // position of the leading clone on its floor
             String direction = in.next(); // direction of the leading clone: LEFT or RIGHT
-            
-            
-            
+            if(cloneFloor <= exitFloor){
+            	//looking for elevator at the current floor
+            	int pos_cur_elev = -1;
+            	if(map_nbElevators.containsKey(cloneFloor)){
+            	    System.err.println("elevator");
+            		pos_cur_elev = map_nbElevators.get(cloneFloor);
+                	
+                	//if the direction is opposite, then block
+            		          	
+                	//after taking elevator, do the things above again
+            	}else{
+            	    System.err.println("no elevator");
+            	    pos_cur_elev = exitPos;
+            	}
+            	if((pos_cur_elev > clonePos && direction.equalsIgnoreCase("LEFT")) 
+            				|| (pos_cur_elev < clonePos && direction.equalsIgnoreCase("RIGHT"))){
+            		System.out.println("BLOCK");
+                }else{
+                	System.out.println("WAIT");
+                }  
+            }else{
+            	System.out.println("WAIT");
+            }
             // Write an action using System.out.println()
             // To debug: System.err.println("Debug messages...");
-
-            System.out.println("WAIT"); // action: WAIT or BLOCK
+            // action: WAIT or BLOCK
         }
     }
 
