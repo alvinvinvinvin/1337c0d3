@@ -81,6 +81,9 @@ Output
  */
 package war;
 
+import java.util.*;
+import java.util.concurrent.*;
+
 /**
  * @author han.chen
  *
@@ -90,9 +93,134 @@ public class Solution {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String args[]) {
+		Scanner in = new Scanner(System.in);
+		ConcurrentLinkedQueue<Integer> que_cardp1 = new ConcurrentLinkedQueue<Integer>();
+		ConcurrentLinkedQueue<Integer> que_cardp2 = new ConcurrentLinkedQueue<Integer>();
+        int n = in.nextInt(); // the number of cards for player 1
+        for (int i = 0; i < n; i++) {
+            String cardp1 = in.next(); // the n cards of player 1
+            String temp = cardp1.substring(0,cardp1.length()-1);
+            que_cardp1.add(convert(temp));
+        }
+        int m = in.nextInt(); // the number of cards for player 2
+        for (int i = 0; i < m; i++) {
+            String cardp2 = in.next(); // the m cards of player 2
+            String temp = cardp2.substring(0,cardp2.length()-1);
+            que_cardp2.add(convert(temp));
+        }
+        in.close();
+        int count = 0;
+        List<Integer> war_list1 = new ArrayList<Integer>();
+        List<Integer> war_list2 = new ArrayList<Integer>();
+        boolean flag_war = false;
+        while(!que_cardp1.isEmpty() && !que_cardp2.isEmpty()){
+        	int cardp1 = que_cardp1.poll();
+        	int cardp2 = que_cardp2.poll();
+        	if(cardp1>cardp2){
+        		count++;
+        		if(flag_war){
+        			//a war just happended
+        			que_cardp1.addAll(war_list1);
+        			que_cardp1.add(cardp1);
+        			que_cardp1.addAll(war_list2);
+        			que_cardp1.add(cardp2);
+        			//war ends
+        			war_list1.clear();
+        			war_list2.clear();
+        			flag_war = false;
+        		}else{
+        			que_cardp1.add(cardp1);
+            		que_cardp1.add(cardp2);
+        		}
+        		
+        	}
+        	else if(cardp1<cardp2){
+        		count++;
+        		if(flag_war){
+        			//a war just happended
+        			que_cardp2.addAll(war_list1);
+        			que_cardp2.add(cardp1);
+        			que_cardp2.addAll(war_list2);
+        			que_cardp2.add(cardp2);
+        			//war ends
+        			war_list1.clear();
+        			war_list2.clear();
+        			flag_war = false;
+        		}else{
+            		que_cardp2.add(cardp1);
+            		que_cardp2.add(cardp2);
+        		}
 
+        	}
+        	else if(cardp1 == cardp2){
+        		
+        		if(que_cardp1.size()<3 || que_cardp2.size()<3){
+        			System.out.println("PAT");
+        			return;
+        		}
+        		
+        		//war
+        		flag_war = true;
+        		war_list1.add(cardp1);
+        		war_list1.add(que_cardp1.poll());
+        		war_list1.add(que_cardp1.poll());
+        		war_list1.add(que_cardp1.poll());
+        		
+        		war_list2.add(cardp2);
+        		war_list2.add(que_cardp2.poll());
+        		war_list2.add(que_cardp2.poll());
+        		war_list2.add(que_cardp2.poll());
+        	}
+        	else{
+        		System.err.println("it should not be 1..");
+        	}
+        }
+
+        if(que_cardp1.isEmpty() && !que_cardp2.isEmpty()){
+        	System.out.println("2 "+count);
+        }else if(que_cardp2.isEmpty() && !que_cardp1.isEmpty()){
+        	System.out.println("1 "+count);
+        }else if(que_cardp2.isEmpty() && que_cardp1.isEmpty()){
+        	System.err.println("it should not be 2..");
+        }else{
+        	System.err.println("it should not be 3..");
+        }
+        // Write an action using System.out.println()
+        // To debug: System.err.println("Debug messages...");
+    }
+	
+	static int convert(String input){
+		switch(input){
+		case "2":
+			return 2;
+		case "3":
+			return 3;
+		case "4":
+			return 4;
+		case "5":
+			return 5;
+		case "6":
+			return 6;
+		case "7":
+			return 7;
+		case "8":
+			return 8;
+		case "9":
+			return 9;
+		case "10":
+			return 10;
+		case "J":
+			return 11;
+		case "Q":
+			return 12;
+		case "K":
+			return 13;
+		case "A":
+			return 14;
+			default:
+				return 15;
+		}
 	}
 
 }
