@@ -120,7 +120,7 @@ public class Solution {
         	if(cardp1>cardp2){
         		count++;
         		if(flag_war){
-        			//a war just happended
+        			//a war just happened
         			que_cardp1.addAll(war_list1);
         			que_cardp1.add(cardp1);
         			que_cardp1.addAll(war_list2);
@@ -138,7 +138,7 @@ public class Solution {
         	else if(cardp1<cardp2){
         		count++;
         		if(flag_war){
-        			//a war just happended
+        			//a war just happened
         			que_cardp2.addAll(war_list1);
         			que_cardp2.add(cardp1);
         			que_cardp2.addAll(war_list2);

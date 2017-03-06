@@ -31,24 +31,24 @@ public class Hanoi {
 	private static void move(int num, char a, char b, char c){
 		if(num == 1){
 			counter++;
-//			if(counter <=200)
-//			System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
-//			else{
-//				if(counter % 10000000 == 0){
-//					System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
-//				}
-//			}
+			if(counter <=200)
+			System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
+			else{
+				if(counter % 10000000 == 0){
+					System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
+				}
+			}
 		}
 		else{
 			move(num-1,a,c,b);
 			counter ++;
-//			if(counter <=200)
-//			System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
-//			else{
-//				if(counter % 10000000 == 0){
-//					System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
-//				}
-//			}
+			if(counter <=200)
+			System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
+			else{
+				if(counter % 10000000 == 0){
+					System.out.println("step "+counter+": move number "+num+" plate from "+a+" to "+c);
+				}
+			}
 			move(num-1,b,a,c);
 		}
 	}
