@@ -111,8 +111,8 @@ public class Solution {
         }
         in.close();
         int count = 0;
-        List<Integer> war_list1 = new ArrayList<Integer>();
-        List<Integer> war_list2 = new ArrayList<Integer>();
+        ConcurrentLinkedQueue<Integer> war_list1 = new ConcurrentLinkedQueue<Integer>();
+        ConcurrentLinkedQueue<Integer> war_list2 = new ConcurrentLinkedQueue<Integer>();
         boolean flag_war = false;
         while(!que_cardp1.isEmpty() && !que_cardp2.isEmpty()){
         	int cardp1 = que_cardp1.poll();
