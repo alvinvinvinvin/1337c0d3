@@ -24,11 +24,15 @@ public class MoveZeroes {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Solution s = new Solution();
+		Solution2 s2 = new Solution2();
 		int[] test = {0,0,1,0,3,12};
 		int[] test2 = {1,0};
-		test = test2;
+		int[] test3 = {0,0,1,0,3,12};
+		//test = test2;
 		s.moveZeroes(test);
+		s2.moveZeros(test3);
 		printArray(test);
+		printArray(test3);
 
 	}
 	
@@ -36,6 +40,7 @@ public class MoveZeroes {
 		for(int i : a){
 			System.out.print(i+", ");
 		}
+		System.out.println();
 	}
 	
 	static class Solution {
@@ -62,6 +67,26 @@ public class MoveZeroes {
 	        nums[left] = nums[right];
 	        nums[right] = temp;
 	    }
+	}
+	
+	static class Solution2{
+		public void moveZeros(int[] nums){
+			if(nums.length == 0 || nums == null) return;
+			int most_left_0 = -1;
+			for(int i = 0; i<nums.length;i++){
+				if(nums[i] != 0){
+					if(most_left_0 != -1){
+						nums[most_left_0] = nums[i];
+						nums[i] = 0;
+						most_left_0++;
+					}
+				}else{
+					if(most_left_0 == -1){
+						most_left_0 = i;
+					}
+				}
+			}
+		}
 	}
 
 }
