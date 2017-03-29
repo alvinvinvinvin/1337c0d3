@@ -88,5 +88,27 @@ public class MoveZeroes {
 			}
 		}
 	}
+	
+	static class Solution3{
+		public void moveZeros(int[] nums){
+			if(nums.length == 0 || nums == null) return;
+			int most_left_0 = -1;
+			for(int i = 0; i<nums.length;i++){
+				if(nums[i] == 0){
+					most_left_0 = i;
+					break;
+				}
+			}
+			if(most_left_0 == -1) return;
+			
+			for(int j = most_left_0+1; j<nums.length; j++){
+				if(nums[j] != 0){
+					nums[most_left_0] = nums[j];
+					nums[j] = 0;
+					most_left_0++;
+				}
+			}
+		}
+	}
 
 }
