@@ -19,6 +19,47 @@ public class TreeNode {
 	public TreeNode left;
 	public TreeNode right;
 	public TreeNode (int x){ this.val = x; }
-
+	public TreeNode(){}
+	public TreeNode create(int[] input, int index){
+		if(index > input.length-1 || input[index] < 0){
+			return null;
+		}
+		TreeNode tmp = new TreeNode(input[index]);
+		tmp.left = create(input, 2*index+1);
+		tmp.right = create(input, 2*index+2);
+		return tmp;
+	}
+	
+	
+	public void inorder(TreeNode root){
+		if(root == null){
+			System.out.print("null ");
+			return;
+		}
+		inorder(root.left);
+		System.out.print(root.val+" ");
+		inorder(root.right);
+	}
+	
+	public void preorder(TreeNode root){
+		if(root == null){
+			System.out.print("null ");
+			return;
+		}
+		System.out.print(root.val+" ");
+		preorder(root.left);
+		preorder(root.right);
+	}
+	
+	public void postorder(TreeNode root){
+		if(root == null){
+			System.out.print("null ");
+			return;
+		}
+		postorder(root.left);
+		postorder(root.right);
+		System.out.print(root.val+" ");
+	}
+	
 }
  

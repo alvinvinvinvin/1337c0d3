@@ -66,7 +66,7 @@ public class Solution {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[][] points = {{0,3},{0,1},{2,3},{1,3},{3,0}};
+		int[][] points = {{0,3},{0,1},{2,3},{1,3},{3,0},{3,1},{0,0}};
 		sort(points);
 		for(int[] i:points){
 			System.out.print("["+i[0]+","+i[1]+"] ");
