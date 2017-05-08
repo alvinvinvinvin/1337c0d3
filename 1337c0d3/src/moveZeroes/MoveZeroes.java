@@ -26,7 +26,7 @@ public class MoveZeroes {
 		Solution s = new Solution();
 		Solution2 s2 = new Solution2();
 		int[] test = {0,0,1,0,3,12};
-		int[] test2 = {1,0};
+		//int[] test2 = {1,0};
 		int[] test3 = {0,0,1,0,3,12};
 		//test = test2;
 		s.moveZeroes(test);
