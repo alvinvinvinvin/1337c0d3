@@ -1,5 +1,6 @@
 package _testPackage;
 import java.util.*;
+import dataStructureHelper.*;
 
 
 /**
@@ -22,6 +23,7 @@ class Solution {
     	int[] a_a = {1,2,3};
     	int[] a_b = {3};
     	System.out.println(findContentChildren(a_a,a_b));
+    	
     }
     
     public static int findContentChildren(int[] g, int[] s) {
@@ -36,4 +38,9 @@ class Solution {
         }
         return c;
     }
+    
+    public static int hammingWeight(int n) {
+        return Integer.bitCount(n);
+    }
+
 }
