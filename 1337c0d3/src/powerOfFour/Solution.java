@@ -15,6 +15,6 @@ package powerOfFour;
  */
 public class Solution {
     public boolean isPowerOfFour(int num) {
-        return num == 1 || (num>0 && Integer.highestOneBit(num) == num && Integer.numberOfTrailingZeros(num) % 2 == 0);
+        return num>0 && Integer.highestOneBit(num) == num && Integer.numberOfTrailingZeros(num) % 2 == 0;
     }
 }
