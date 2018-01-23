@@ -68,5 +68,25 @@ class Solution {
     public static boolean isPowerOf4(int num){
     	return num == 1 || (num>0 && Integer.highestOneBit(num) == num && Integer.numberOfTrailingZeros(num) % 2 == 0);
     }
+    
+    public static char findMissingLetter(char[] array)
+    {
+      char res = 0;
+      for(int i = 0; i+1<array.length;i++){
+        if(array[i+1]-array[i] > 1){
+          res = (char) (array[i] + 1);
+          break;
+        }
+      }
+      return res;
+    }
+    
+    public static void swap(String[] input){
+	   for(int i = 0,j=input.length-1; i<j;i++,j--){
+	     String temp = input[i];
+	     input[i] = input[j];
+	     input[j] = temp;
+	   }
+	 }
 
 }
