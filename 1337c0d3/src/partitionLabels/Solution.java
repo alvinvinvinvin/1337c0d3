@@ -27,9 +27,10 @@ import java.util.*;
 public class Solution {
 	public static List<Integer> partitionLabels(String S) {
         int[] all = new int[26];
-        int total_all = S.length();
+        char[] char_arr = S.toCharArray();
+        int total_all = char_arr.length;
         for(int i = 0; i<total_all; i++){
-            all[S.charAt(i)-'a']++;
+            all[char_arr[i]-'a']++;
         }
         
         int[] bus = new int[26];
@@ -37,28 +38,22 @@ public class Solution {
         	bus[i] = -1;
         }
         int total_cur = 0;
-        List<Integer> list_ebus_i = new ArrayList<Integer>();
-        list_ebus_i.add(-1);
+        List<Integer> res = new ArrayList<Integer>();
+        int temp = -1;
         for(int i = 0; i<total_all; i++){
             
-            char c = S.charAt(i);
-            int index = c-'a';
+            int index = char_arr[i]-'a';
             
             if(bus[index] == -1){
                 bus[index] = all[index] - 1;
                 total_cur += bus[index];
             }else{
-                bus[index]--;
                 total_cur--;
             }
             if(total_cur == 0){
-                list_ebus_i.add(i);
+                res.add(i-temp);
+                temp = i;
             }
-        }
-        List<Integer> res = new ArrayList<Integer>();
-        
-        for(int i = 1; i<list_ebus_i.size(); i++){
-            res.add(list_ebus_i.get(i)-list_ebus_i.get(i-1));
         }
         
         return res;
