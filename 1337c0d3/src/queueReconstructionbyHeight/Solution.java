@@ -6,6 +6,14 @@
 
 Note:
 The number of people is less than 1,100.
+
+Example
+
+Input:
+[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+
+Output:
+[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
  */
 package queueReconstructionbyHeight;
 
@@ -19,47 +27,41 @@ public class Solution {
 	public int[][] reconstructQueue(int[][] people) {
         int n = people.length;
         if(people == null || people.length == 0 || people[0] ==null ||people[0].length == 0) return people;
-        Map<Integer, ArrayList<int[]>> map = new HashMap<Integer, ArrayList<int[]>>();
+        SortedMap<Integer, TreeSet<int[]>> map = new TreeMap<Integer, TreeSet<int[]>>();
         for(int i = 0; i<n; i++){
             int key = people[i][1];
+            TreeSet<int[]> tmp;
             if(map.containsKey(key)){
-                map.get(key).add(people[i]);
+                tmp = map.get(key);
             }else{
-            	ArrayList<int[]> tmp = new ArrayList<int[]>();
-            	tmp.add(people[i]);
-                map.put(key, tmp);
+            	tmp = new TreeSet<int[]>();
             }
+            
+        	tmp.add(people[i]);
+            map.put(key, tmp);
         }
+        int[][] res = new int[n][2];
+        
         for(Map.Entry e:map.entrySet()){
         	int key = (int)e.getKey();
         	ArrayList<int[]> tmp = (ArrayList<int[]>) e.getValue();
-        	Integer[][] first = new Integer[tmp.size()][2];
-        	first = tmp.toArray(first);
-        
-        	
-//        	Collections.sort(tmp, new Comparator<Integer[]>() {
-//                @Override
-//                public int compare(final Integer[] entry1, final Integer[] entry2) {
-//                    final Integer order1 = entry1[0];
-//                    final Integer order2 = entry2[0];
-//                    return order1.compareTo(order2);
-//                }
-//            });
-        	
-        	//map.put(key, new ArrayList<int[]>().addAll(first))
+        	Collections.sort(tmp, (arr1, arr2) -> arr1[0]- arr2[0]);
+        	map.put(key, tmp);
         }
         
+        ArrayList<int[]> res_list = map.get(0);
         
+        for(Map.Entry e:map.entrySet()){
+        	int key = (int)e.getKey();
+        	if(key == 0) continue;
+        	ArrayList<int[]> tmp = (ArrayList<int[]>) e.getValue();
+        	for(int i = 0; i<tmp.size();i++){
+        		int[] arr = tmp.get(i);
+        		int index = arr[1];
+        		res_list.add(index, arr);
+        	}
+        }
         
-//        Arrays.sort(first, new Comparator<Integer[]>() {
-//            @Override
-//            public int compare(final Integer[] entry1, final Integer[] entry2) {
-//                final Integer order1 = entry1[0];
-//                final Integer order2 = entry2[0];
-//                return order1.compareTo(order2);
-//            }
-//        });
-        int[][] res = new int[n][2];
         return res;
         
 	}
