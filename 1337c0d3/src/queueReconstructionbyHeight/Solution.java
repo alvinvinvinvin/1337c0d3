@@ -35,33 +35,36 @@ public class Solution {
         	ArrayList<int[]> tmp = (ArrayList<int[]>) e.getValue();
         	Integer[][] first = new Integer[tmp.size()][2];
         	first = tmp.toArray(first);
+        
         	
-        	Collections.sort(tmp, new Comparator<Integer[]>() {
-                @Override
-                public int compare(final Integer[] entry1, final Integer[] entry2) {
-                    final Integer order1 = entry1[0];
-                    final Integer order2 = entry2[0];
-                    return order1.compareTo(order2);
-                }
-            });
+//        	Collections.sort(tmp, new Comparator<Integer[]>() {
+//                @Override
+//                public int compare(final Integer[] entry1, final Integer[] entry2) {
+//                    final Integer order1 = entry1[0];
+//                    final Integer order2 = entry2[0];
+//                    return order1.compareTo(order2);
+//                }
+//            });
         	
-        	map.put(key, new ArrayList<int[]>().addAll(first))
+        	//map.put(key, new ArrayList<int[]>().addAll(first))
         }
         
         
         
-        Arrays.sort(first, new Comparator<Integer[]>() {
-            @Override
-            public int compare(final Integer[] entry1, final Integer[] entry2) {
-                final Integer order1 = entry1[0];
-                final Integer order2 = entry2[0];
-                return order1.compareTo(order2);
-            }
-        });
+//        Arrays.sort(first, new Comparator<Integer[]>() {
+//            @Override
+//            public int compare(final Integer[] entry1, final Integer[] entry2) {
+//                final Integer order1 = entry1[0];
+//                final Integer order2 = entry2[0];
+//                return order1.compareTo(order2);
+//            }
+//        });
+        int[][] res = new int[n][2];
+        return res;
         
-    }
+	}
     
-    public void sort(Collection data, Comparator<T>){
-        
-    }
+//    public void sort(Collection data, Comparator<T>){
+//        
+//    }
 }

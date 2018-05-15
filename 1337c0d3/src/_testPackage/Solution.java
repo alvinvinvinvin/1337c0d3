@@ -33,6 +33,7 @@ class Solution {
     	
     	int num1 = 16,num2 = 15,num3 = 8;
     	System.out.print(isPowerOf4(num1)+","+ isPowerOf4(num2)+","+ isPowerOf4(num3));
+    	
     }
     
     public static int findContentChildren(int[] g, int[] s) {
