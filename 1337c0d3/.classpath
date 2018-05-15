@@ -10,6 +10,8 @@
 	<classpathentry kind="src" path="Hackerrank"/>
 	<classpathentry kind="src" path="Amazon"/>
 	<classpathentry kind="src" path="Codingame"/>
+	<classpathentry kind="src" path="Lintcode"/>
+	<classpathentry kind="src" path="ITA"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
